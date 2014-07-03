@@ -38,7 +38,10 @@ Dependencies
 ============
 
 To make the management of dependencies easy, Vagrant is used. Please
-install the latest version of Vagrant and VirtualBox.
+install the latest version of Vagrant and VirtualBox. *These are the
+only dependencies that you have to fetch since all of the other - quite
+complex - dependencies will be fetched and built within your vagrant
+box.* Nothing will be installed on your machine.
 
 ========
 Building 
