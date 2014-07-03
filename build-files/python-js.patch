@@ -1,0 +1,18 @@
+--- python.js	2014-05-15 00:56:18.026466000 +0000
++++ python.js.fixed	2014-05-15 06:05:50.519399790 +0000
+@@ -402765,7 +402765,6 @@
+ function __Py_get_387controlword() {
+   var label = 0;
+   var $cw;
+-  fnstcw $0
+   var $1=$cw; //@line 24 "Python/pymath.c"
+   return $1; //@line 24 "Python/pymath.c"
+ }
+@@ -402773,7 +402772,6 @@
+   var label = 0;
+   var $1;
+   $1=$cw;
+-  fldcw $0
+   return; //@line 29 "Python/pymath.c"
+ }
+ function _PyArena_New() {

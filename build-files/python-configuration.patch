@@ -1,0 +1,54 @@
+diff -rupN Python-2.7.4-js/Makefile Python-2.7.4-js-patched/Makefile
+--- Python-2.7.4-js/Makefile	2014-05-15 04:55:34.483552358 +0000
++++ Python-2.7.4-js-patched/Makefile	2014-05-15 05:27:18.947483440 +0000
+@@ -485,7 +485,7 @@ $(LIBRARY): $(LIBRARY_OBJS)
+ libpython$(VERSION).so: $(LIBRARY_OBJS)
+ 	if test $(INSTSONAME) != $(LDLIBRARY); then \
+ 		$(BLDSHARED) -Wl,-h$(INSTSONAME) -o $(INSTSONAME) $(LIBRARY_OBJS) $(MODLIBS) $(SHLIBS) $(LIBC) $(LIBM) $(LDLAST); \
+-		$(LN) -f $(INSTSONAME) $@; \
++		cp $(INSTSONAME) $@; \
+ 	else \
+ 		$(BLDSHARED) -o $@ $(LIBRARY_OBJS) $(MODLIBS) $(SHLIBS) $(LIBC) $(LIBM) $(LDLAST); \
+ 	fi
+diff -rupN Python-2.7.4-js/pyconfig.h Python-2.7.4-js-patched/pyconfig.h
+--- Python-2.7.4-js/pyconfig.h	2014-05-15 04:55:34.311552364 +0000
++++ Python-2.7.4-js-patched/pyconfig.h	2014-05-15 05:27:49.119482348 +0000
+@@ -267,7 +267,7 @@
+ 
+ /* Define if we can use gcc inline assembler to get and set x87 control word
+    */
+-#define HAVE_GCC_ASM_FOR_X87 1
++// #define HAVE_GCC_ASM_FOR_X87 1
+ 
+ /* Define if you have the getaddrinfo function. */
+ /* #undef HAVE_GETADDRINFO */
+@@ -630,16 +630,16 @@
+ /* #undef HAVE_SHADOW_H */
+ 
+ /* Define to 1 if you have the `sigaction' function. */
+-#define HAVE_SIGACTION 1
++// #define HAVE_SIGACTION 1
+ 
+ /* Define to 1 if you have the `siginterrupt' function. */
+-#define HAVE_SIGINTERRUPT 1
++// #define HAVE_SIGINTERRUPT 1
+ 
+ /* Define to 1 if you have the <signal.h> header file. */
+-#define HAVE_SIGNAL_H 1
++// #define HAVE_SIGNAL_H 1
+ 
+ /* Define to 1 if you have the `sigrelse' function. */
+-#define HAVE_SIGRELSE 1
++// #define HAVE_SIGRELSE 1
+ 
+ /* Define to 1 if you have the `snprintf' function. */
+ #define HAVE_SNPRINTF 1
+@@ -1263,5 +1263,8 @@
+ #define STRICT_SYSV_CURSES /* Don't use ncurses extensions */
+ #endif
+ 
++
++#define PY_NO_SHORT_FLOAT_REPR
++
+ #endif /*Py_PYCONFIG_H*/
+ 
