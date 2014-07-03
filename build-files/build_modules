@@ -13,7 +13,6 @@ PYTHON=python2
 # Which modules to build dynamically.
 # Maps each module name to the C files implementing it.
 declare -A MODULES
-# MODULES[_socket]="socketmodule.c"
 MODULES[cmath]="cmathmodule.c _math.c"
 MODULES[_struct]="_struct.c"
 MODULES[math]="mathmodule.c _math.c"
@@ -61,6 +60,7 @@ MODULES[_codecs_iso2022]="cjkcodecs/_codecs_iso2022.c"
 MODULES[dl]="dlmodule.c"
 MODULES[parser]="parsermodule.c"
 
+#MODULES[_socket]="socketmodule.c"
 #MODULES[bz2]="bz2module.c"
 #MODULES[_heapq]="_heapqmodule.c"
 #MODULES[spwd]="spwdmodule.c"
@@ -109,8 +109,8 @@ function build_module {
   for ((i=2; i<=$#; i++)); do
     echo $EMCC $FLAGS ../Modules/${!i} -o `basename ${!i}`.o
     $EMCC $FLAGS ../Modules/${!i} -o `basename ${!i}`.o
-    # echo emcc $FLAGS ../Modules/${!i} -o `basename ${!i}`.o
-    # emcc $FLAGS ../Modules/${!i} -o `basename ${!i}`.o
+    # python ./ccproxy.py $FLAGS ../Modules/${!i} -o `basename ${!i}`.o
+    echo emcc $FLAGS ../Modules/${!i} -o `basename ${!i}`.o
     FILES="$FILES `basename ${!i}`.o"
   done
 

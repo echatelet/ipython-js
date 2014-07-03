@@ -1,0 +1,44 @@
+diff -Naur emscripten/src/library.js emscripten-fixed/src/library.js
+--- emscripten/src/library.js	2014-07-02 17:49:18.483031476 -0700
++++ emscripten-fixed/src/library.js	2014-07-02 17:49:36.351031109 -0700
+@@ -5051,7 +5051,10 @@
+   _ZTVN10__cxxabiv119__pointer_type_infoE: [0], // is a pointer
+   _ZTVN10__cxxabiv117__class_type_infoE: [1], // no inherited classes
+   _ZTVN10__cxxabiv120__si_class_type_infoE: [2], // yes inherited classes
+-
++  _ZTISt9exception: [3],
++  warn: [4],
++  __dso_handle: [5],
++ 
+   // Exceptions
+   __cxa_allocate_exception: function(size) {
+     return _malloc(size);
+@@ -5072,6 +5075,16 @@
+       try {
+         {{{ makeSetValue(makeGlobalUse('__ZTVN10__cxxabiv120__si_class_type_infoE'), '0', '2', 'i32') }}}; // Workaround for libcxxabi integration bug
+       } catch(e){}
++      try {
++         {{{ makeSetValue(makeGlobalUse('__ZTISt9exception'), '0', '3', 'i32') }}}; // Workaround for libcxxabi integration bug
++      } catch(e) {}
++      try {
++         {{{ makeSetValue(makeGlobalUse('_warn'), '0', '4', 'i32') }}}; // Workaround for libcxxabi integration bug
++      } catch(e) {}
++      try {
++         {{{ makeSetValue(makeGlobalUse('___dso_handle'), '0', '5', 'i32') }}}; // Workaround for libcxxabi integration bug
++      } catch(e) {}
++
+       ___cxa_throw.initialized = true;
+     }
+ #if EXCEPTION_DEBUG
+diff -Naur emscripten/src/shell.js emscripten-fixed/src/shell.js
+--- emscripten/src/shell.js	2014-07-02 17:49:18.447031477 -0700
++++ emscripten-fixed/src/shell.js	2014-07-01 16:32:17.302897554 -0700
+@@ -101,7 +101,7 @@
+     Module['print'] = (TRY_USE_DUMP && (typeof(dump) !== "undefined") ? (function(x) {
+       dump(x);
+     }) : (function(x) {
+-      // self.postMessage(x); // enable this if you want stdout to be sent as messages
++      self.postMessage(x); // enable this if you want stdout to be sent as messages
+     }));
+   }
+ 
