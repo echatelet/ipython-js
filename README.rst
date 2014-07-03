@@ -4,10 +4,16 @@ IPython Javascript Port
 
 This is an in-progress port of IPython to Javascript via Emscripten. It is 
 not currently working but in the spirit of a great talk by Brian Fitzpatrick
-and Ben Collins-Sussman from Google (bit.ly/1osLeO3). Collaboration is
-very welcome but not expected. 
+and Ben Collins-Sussman from Google (bit.ly/1osLeO3) has been released
+early instead of released perfectly. Collaboration is very welcome but 
+not expected. 
 
 **Please don't announce anything until IPython is working.**
+
+With that said, Python and external submodules are working. If you are
+working on a similar project, this might be a good starting point since
+it currently builds and is more up-to-date than the empythoned 
+repository. 
 
 What's working, what's not
 ==========================
