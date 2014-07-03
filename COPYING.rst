@@ -1,8 +1,3 @@
-Empythoned Copyright
-====================
-
-The files from the Empythoned project (https://github.com/replit/empythoned) are licensed under the MIT license. 
-
 IPython-js Copyright
 ====================
 
