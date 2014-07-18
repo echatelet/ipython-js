@@ -59,3 +59,20 @@ Build the package
    
    $ cd /vagrant; sudo make all 
 
+====
+NEWS
+====
+
+07/18/2014 - Very basic unit testing has been added. The tests are ran automatically from
+the commandline using node.js.
+
+==========
+NEXT STEPS
+==========
+
+* Verify that imports work from node (for unit tests)
+* Fix the unittest file and exit on error
+* Determine what modules are required for IPython (presumably by intercepting import calls)
+* Load modules iteratively, not recursively which reaches the recursive limits for Javascript
+
+ 
