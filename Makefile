@@ -127,9 +127,17 @@ create_javascript_filesystem:
 	cd Python-2.7.4-js;python map_filesystem.py dist >> fs.js
 	cat Python-2.7.4-js/post_fs.js >> Python-2.7.4-js/fs.js
 
+# Don't use O2 since it currently errors out
 emscripten_python_js:
-	# Don't use O2 since it currently errors out
 	cd Python-2.7.4-js; /vagrant/emscripten/emcc python.bc -s INCLUDE_FULL_LIBRARY=1 -s NAMED_GLOBALS=1 -s INVOKE_RUN=0 --pre-js fs.js  -s EXPORTED_FUNCTIONS="['_Py_Initialize', '_PySys_SetArgv', '_PyErr_Clear', '_PyEval_EvalCode', '_PyString_AsString', '_Py_DecRef', '_PyErr_Print', '_PyErr_Fetch']" -s ASM_JS=0 -o python.js
+
+create_tests:
+	# Don't use O2 since it currently errors out
+	cp Python-2.7.4-js/python.js tests/
+	cat build-files/post_test.js >> tests/python.js
+
+run_tests:
+	node tests/python.js
 
 create_web_directory:
 	mkdir -p web
@@ -149,7 +157,7 @@ clean:
 	rm -rf emscripten 
 
 # Build Javascript Python
-all: download_python_dependencies download_python_modules setup_paths patch_emscripten test_emscripten build_python build_python_modules setup_modules_directory install_setuptools create_javascript_filesystem emscripten_python_js create_web_directory
+all: download_python_dependencies download_python_modules setup_paths patch_emscripten test_emscripten build_python build_python_modules setup_modules_directory install_setuptools create_javascript_filesystem emscripten_python_js create_web_directory create_tests run_tests
 
-all_with_modules: download_python_dependencies download_python_modules setup_paths patch_emscripten test_emscripten build_python build_python_modules setup_modules_directory install_setuptools install_python_modules create_javascript_filesystem emscripten_python_js create_web_directory  
+all_with_modules: download_python_dependencies download_python_modules setup_paths patch_emscripten test_emscripten build_python build_python_modules setup_modules_directory install_setuptools install_python_modules create_javascript_filesystem emscripten_python_js create_web_directory create_tests run_tests
 
