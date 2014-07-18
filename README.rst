@@ -70,9 +70,13 @@ the commandline using node.js.
 NEXT STEPS
 ==========
 
+Here are the next steps to be tackled:
+
 * Verify that imports work from node (for unit tests)
 * Fix the unittest file and exit on error
 * Determine what modules are required for IPython (presumably by intercepting import calls)
 * Load modules iteratively, not recursively which reaches the recursive limits for Javascript
+
+These will result in reliable, build-breaking unit tests and a list of modules that have to work for IPython to work.
 
  
